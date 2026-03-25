@@ -1,4 +1,4 @@
-import { ttlCache } from './main.js';
+import { ttlCache, redis } from './main.js';
 
 async function demo() {
   const user = await ttlCache('user:123', async () => {
@@ -8,5 +8,5 @@ async function demo() {
   console.log('Demo result:', user);
 }
 
-demo();
+demo().finally(async () => { await redis.disconnect(); process.exit(0); });
 

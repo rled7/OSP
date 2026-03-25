@@ -3,24 +3,26 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-"scripts": {
+  "scripts": {
     "build": "tsc",
     "dev": "tsx watch main.ts",
     "demo": "tsx demo.ts",
-    "start": "node dist/main.js"
+"start": "node dist/main.js",
+"bench": "tsx benchmark.ts",
+"presentation":"npm install && npm run build && npm run demo && (pkill -f tsx || true) && npm run bench && (pkill -f tsx || true) && echo 'Presentation complete!'"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
-"dependencies": {
-    "ioredis": "^5.10.0",
-    "express": "^4.19.2"
+  "dependencies": {
+    "express": "^4.19.2",
+    "ioredis": "^5.10.1"
   },
   "devDependencies": {
+    "@types/express": "^4.17.21",
     "@types/node": "^25.5.0",
-    "typescript": "^5.9.3",
     "tsx": "^4.19.2",
-    "@types/express": "^4.17.21"
+    "typescript": "^5.9.3"
   }
 }
