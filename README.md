@@ -45,6 +45,7 @@ brew services start redis
 npm run dev  # Library watch mode
 npm run demo # Dynamic TTL demo
 npm start    # Prod built version (after npm run build)
+npm run presentation # **One-command presentation** (install+build+demo+bench+cleanup) – recommended unless manually launching utility for testing.
 ```
 
 **Sample Output:**
@@ -102,28 +103,58 @@ npx tsc  # → dist/
 
 ## Building & Scripts (All Available)
 
-| Script                 | Purpose                                     |
-| ---------------------- | ------------------------------------------- |
-| `npm run build`        | `tsc` → dist/                               |
-| `npm run dev`          | `tsx watch main.ts` (interactive watch)     |
-| `npm run demo`         | Dynamic TTL test                            |
-| `npm run bench`        | Speed comparison (100000% speedup example)  |
-| `npm run start`        | `node dist/main.js` (lib after build)       |
-| `npm run presentation` | Full demo: install+build+demo+bench+cleanup |
+| Script                 | Purpose                                |
+| ---------------------- | -------------------------------------- |
+| `npm run build`        | `tsc` → dist/                          |
+| `npm run dev`          | `tsx watch main.ts`                    |
+| `npm run demo`         | Dynamic TTL test                       |
+| `npm run bench`        | Speed comparison                       |
+| `npm run start`        | `node dist/main.js`                    |
+| `npm run presentation` | Full: install+build+demo+bench+cleanup |
+
+## ## Import Into Your Project (3 Ways)
+
+### 1. **Local Path** (same repo)
+
+```typescript
+import { ttlCache } from "./OSP/main.js";
+const data = await ttlCache("key", slowFn);
+```
+
+### 2. **npm Link** (dev dependency)
+
+```
+cd OSP && npm link
+cd your-project && npm link osp
+```
+
+```typescript
+import { ttlCache } from "osp";
+```
+
+### 3. **Copy Files** (standalone)
+
+Copy OSP/main.ts → your-project/lib/cache.ts, `npm i ioredis @types/ioredis`
+
+```typescript
+import { ttlCache } from "./lib/cache.js"; // after tsc
+```
+
+**Redis required. See commented files for internals.**
 
 ## Benchmark Results
 
 ```
 Origin avg: 1001ms
 Cache avg: 1ms
-Speedup: 100000% (1000x faster)
+Speedup: 100000%
 ```
 
 ## Updates & Enhancements (Added)
 
 - Line-by-line comments (`*-commented.ts`).
-- Hang fixes, speedup math >100%.
-- All scripts verified.
+- Hang fixes, speedup math.
+- Scripts verified.
 
 ## License
 
