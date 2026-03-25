@@ -76,7 +76,7 @@ export function ttlMiddleware(keyPrefix, options = {}) {
             }
         }).catch(next);
     };
-} 
+}
 process.on('SIGINT', async () => {
     await redis.disconnect();
     process.exit(0);
