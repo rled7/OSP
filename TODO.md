@@ -7,3 +7,8 @@
 - Docs: README full API/examples/math
 
 **Status: Deploy ready. Future: Add hit rate stats.**
+**Note: add hit rate stats**
+**Note: ...future stretch goals will be listed out here**
+
+###
+

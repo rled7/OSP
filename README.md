@@ -103,14 +103,14 @@ npx tsc  # → dist/
 
 ## Building & Scripts (All Available)
 
-| Script                 | Purpose                                |
-| ---------------------- | -------------------------------------- |
-| `npm run build`        | `tsc` → dist/                          |
-| `npm run dev`          | `tsx watch main.ts`                    |
-| `npm run demo`         | Dynamic TTL test                       |
-| `npm run bench`        | Speed comparison                       |
-| `npm run start`        | `node dist/main.js`                    |
-| `npm run presentation` | Full: install+build+demo+bench+cleanup |
+| Script                 | Purpose                                                                     |
+| ---------------------- | --------------------------------------------------------------------------- |
+| `npm run build`        | `tsc` → dist/                                                               |
+| `npm run dev`          | `tsx watch main.ts`                                                         |
+| `npm run demo`         | Dynamic TTL test                                                            |
+| `npm run bench`        | Speed comparison                                                            |
+| `npm run start`        | `node dist/main.js`                                                         |
+| `npm run presentation` | Full demo (install+build+demo:hit+bench+cleanup+pause), terminates on Enter |
 
 ## ## Import Into Your Project (3 Ways)
 
@@ -150,11 +150,25 @@ Cache avg: 1ms
 Speedup: 100000%
 ```
 
-## Updates & Enhancements (Added)
+## Latest Update: Enhanced Demos
 
-- Line-by-line comments (`*-commented.ts`).
-- Hang fixes, speedup math.
-- Scripts verified.
+- **demo.ts**: 4 clean demos (small/large data, 3x mini-bench, UUID key) with timings/expected TTL/output.
+- Rerun: Miss (TTL logged) → hit (instant).
+- `demo-commented.ts`: Line-by-line.
+
+**Sample output:**
+
+```
+Small cache: 1025ms (0KB)
+Expected TTL: ~7200s
+Speedup: 99900% (3ms vs 1500ms)
+```
+
+## Updates & Enhancements
+
+- `demo` script: Auto miss+hit (tsx demo.ts && sleep 1 && tsx demo.ts).
+- `presentation`: + pkill/tsx cleanup + `read` pause → terminates CLI.
+- JSON fixed, no re-create.
 
 ## License
 
